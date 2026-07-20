@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { createClient } from "@/lib/supabase/client";
 
-type TableName = "signals" | "products" | "product_variants" | "inventory_movements" | "campaigns" | "campaign_metrics" | "prompts" | "knowledge_entries" | "marketing_angles" | "profiles" | "tags" | "scripts" | "product_ai_reviews" | "signal_ai_analyses";
+type TableName = "signals" | "products" | "product_variants" | "inventory_movements" | "campaigns" | "campaign_metrics" | "prompts" | "knowledge_entries" | "marketing_angles" | "profiles" | "tags" | "scripts" | "product_ai_reviews" | "signal_ai_analyses" | "content_pieces" | "cro_audits" | "experiments" | "experiment_variants";
 
 interface UseSupabaseQueryOptions<T> {
   table: TableName;

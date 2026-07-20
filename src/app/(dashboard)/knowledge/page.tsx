@@ -90,7 +90,7 @@ export default function KnowledgePage() {
   const [formOpen, setFormOpen] = useState(false);
   const [editingEntry, setEditingEntry] = useState<KnowledgeEntry | null>(null);
 
-  const allEntries: KnowledgeEntry[] = isDemo
+  const allEntries: KnowledgeEntry[] = isDemo || !dbEntries?.length
     ? demoEntries
     : dbEntries.map((e) => {
         const mapped = mapDbKnowledgeToKnowledge(e);

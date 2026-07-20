@@ -1,55 +1,67 @@
 export const SIDEBAR_NAV_ITEMS = [
   {
     key: "dashboard",
-    label: "لوحة التحكم",
+    label: "Dashboard",
     path: "/dashboard",
     icon: "LayoutDashboard",
   },
   {
     key: "signals",
-    label: "الإشارات",
+    label: "Signals",
     path: "/signals",
     icon: "Radar",
   },
   {
     key: "products",
-    label: "المنتجات",
+    label: "Products",
     path: "/products",
     icon: "Package",
   },
   {
     key: "angles",
-    label: "الزوايا التسويقية",
+    label: "Marketing Angles",
     path: "/angles",
     icon: "Target",
   },
   {
+    key: "content",
+    label: "Content Studio",
+    path: "/content",
+    icon: "FileText",
+  },
+  {
+    key: "experiments",
+    label: "Experiments",
+    path: "/experiments",
+    icon: "FlaskConical",
+  },
+  {
     key: "inventory",
-    label: "المخزون",
+    label: "Inventory",
     path: "/inventory",
     icon: "Warehouse",
   },
   {
     key: "campaigns",
-    label: "الحملات",
+    label: "Campaigns",
     path: "/campaigns",
     icon: "Megaphone",
   },
   {
     key: "prompts",
-    label: "البرومبتات",
+    label: "Prompts",
     path: "/prompts",
     icon: "Sparkles",
   },
   {
     key: "knowledge",
-    label: "قاعدة المعرفة",
+    label: "Knowledge Base",
     path: "/knowledge",
     icon: "BookOpen",
   },
   {
     key: "settings",
-    label: "الإعدادات",
+    label: "Settings",
     path: "/settings",
     icon: "Settings",
   },
@@ -144,4 +156,41 @@ export const CURRENCIES = [
 export const DEFAULT_PAGE_SIZE = 20;
 
 export const APP_NAME = "DZ Ecom OS";
-export const APP_DESCRIPTION = "نظام التشغيل للتجارة الإلكترونية في الجزائر";
+export const APP_DESCRIPTION = "E-commerce operating system for Algerian merchants";
+
+export const CONTENT_TYPES = [
+  { key: "ad_copy", label: "Ad Copy" },
+  { key: "hook", label: "Hook" },
+  { key: "script", label: "Script" },
+  { key: "facebook_post", label: "Facebook Post" },
+  { key: "tiktok_script", label: "TikTok Script" },
+  { key: "headline", label: "Headline" },
+  { key: "cta", label: "Call to Action" },
+  { key: "email", label: "Email" },
+  { key: "whatsapp_message", label: "WhatsApp Message" },
+  { key: "other", label: "Other" },
+] as const;
+
+export const EXPERIMENT_VARIABLES = [
+  { key: "headline", label: "Headline" },
+  { key: "cta", label: "Call to Action" },
+  { key: "image", label: "Image / Visual" },
+  { key: "format", label: "Format" },
+  { key: "audience", label: "Audience Targeting" },
+  { key: "offer", label: "Offer" },
+  { key: "landing_page", label: "Landing Page" },
+  { key: "copy", label: "Copy" },
+  { key: "platform", label: "Platform" },
+  { key: "other", label: "Other" },
+] as const;
+
+export const EXPERIMENT_METRICS = [
+  { key: "ctr", label: "CTR (Click-through Rate)" },
+  { key: "conversion_rate", label: "Conversion Rate" },
+  { key: "cpm", label: "CPM (Cost per 1000)" },
+  { key: "cpc", label: "CPC (Cost per Click)" },
+  { key: "roas", label: "ROAS (Return on Ad Spend)" },
+  { key: "messages", label: "Messages Received" },
+  { key: "orders", label: "Orders" },
+  { key: "engagement", label: "Engagement" },
+] as const;

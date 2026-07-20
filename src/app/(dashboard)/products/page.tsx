@@ -30,6 +30,7 @@ import {
   AIEvaluationDialog,
   type AIEvaluation,
 } from "@/components/products/ai-evaluation-dialog";
+import { CROAuditDialog } from "@/components/products/cro-audit-dialog";
 import { useI18n } from "@/lib/i18n/context";
 import {
   useSupabaseQuery,
@@ -189,7 +190,9 @@ export default function ProductsPage() {
     enabled: !isDemo,
   });
 
-  const products = isDemo ? MOCK_PRODUCTS : dbProducts.map(mapDbProductToProduct);
+  const products: Product[] = isDemo || !dbProducts?.length
+    ? MOCK_PRODUCTS
+    : (dbProducts.map(mapDbProductToProduct) as unknown as Product[]);
 
   const { insert } = useSupabaseInsert<DbProduct>("products");
   const { update } = useSupabaseUpdate<DbProduct>("products");
@@ -199,6 +202,11 @@ export default function ProductsPage() {
   const [filterNiche, setFilterNiche] = useState("all");
   const [filterStatus, setFilterStatus] = useState("all");
 
+  const handleCroAudit = useCallback((product: Product) => {
+    setCroProduct(product);
+    setCroDialogOpen(true);
+  }, []);
+
   const [formOpen, setFormOpen] = useState(false);
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
   const [detailOpen, setDetailOpen] = useState(false);
@@ -207,6 +215,8 @@ export default function ProductsPage() {
   const [evaluatingProduct, setEvaluatingProduct] = useState<Product | null>(
     null
   );
+  const [croDialogOpen, setCroDialogOpen] = useState(false);
+  const [croProduct, setCroProduct] = useState<Product | null>(null);
   const [evalLoading, setEvalLoading] = useState(false);
   const [evalResult, setEvalResult] = useState<AIEvaluation | null>(null);
   const [evalError, setEvalError] = useState<string | null>(null);
@@ -450,6 +460,7 @@ export default function ProductsPage() {
               onDelete={handleDelete}
               onEvaluate={handleEvaluate}
               onView={handleView}
+              onCroAudit={handleCroAudit}
             />
           ))}
         </div>
@@ -479,6 +490,12 @@ export default function ProductsPage() {
         evaluation={evalResult}
         loading={evalLoading}
         error={evalError}
+      />
+
+      <CROAuditDialog
+        open={croDialogOpen}
+        onOpenChange={setCroDialogOpen}
+        product={croProduct}
       />
 
       <AlertDialog open={!!deleteId} onOpenChange={() => setDeleteId(null)}>

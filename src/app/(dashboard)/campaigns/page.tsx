@@ -159,7 +159,7 @@ export default function CampaignsPage() {
     enabled: !isDemo,
   });
 
-  const campaigns = isDemo ? MOCK_CAMPAIGNS : dbCampaigns;
+  const campaigns = isDemo || !dbCampaigns?.length ? MOCK_CAMPAIGNS : dbCampaigns;
 
   const { insert } = useSupabaseInsert<Campaign>("campaigns");
   const { update } = useSupabaseUpdate<Campaign>("campaigns");

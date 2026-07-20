@@ -114,7 +114,7 @@ export default function SignalsPage() {
 
   const [demoSignals, setDemoSignals] = useState<Signal[]>(MOCK_SIGNALS);
 
-  const signals: Signal[] = isDemo
+  const signals: Signal[] = isDemo || !(dbSignals as unknown[])?.length
     ? demoSignals
     : (dbSignals as unknown as Signal[]);
 

@@ -1,13 +1,14 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Settings, Globe, Palette } from "lucide-react";
+import { Settings, Globe, Palette, Sun, Moon } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from "@/components/ui/separator";
 import { ProfileForm, type ProfileData } from "@/components/settings/profile-form";
 import { ApiStatus } from "@/components/settings/api-status";
 import { useI18n } from "@/lib/i18n/context";
+import { useTheme } from "@/components/layout/theme-provider";
 import {
   useSupabaseQuery,
   useSupabaseUpdate,
@@ -17,9 +18,9 @@ import {
 import type { Profile } from "@/types/database";
 
 const INITIAL_PROFILE: ProfileData = {
-  full_name: "أحمد بن محمد",
+  full_name: "Ahmed Ben Mohamed",
   email: "ahmed@dzecom.dz",
-  store_name: "متجر الجزائر للجمال",
+  store_name: "Algeria Beauty Store",
   phone: "+213 555 12 34 56",
   preferred_currency: "DZD",
   preferred_niche: "beauty",
@@ -44,6 +45,7 @@ export default function SettingsPage() {
   const profile = profiles[0] ?? null;
   const { update } = useSupabaseUpdate<Profile>("profiles");
 
+  const { theme, setTheme } = useTheme();
   const [localProfile, setLocalProfile] = useState<ProfileData>(INITIAL_PROFILE);
 
   useEffect(() => {
@@ -90,7 +92,7 @@ export default function SettingsPage() {
         <div>
           <h1 className="text-2xl font-bold tracking-tight">{t.settings.title}</h1>
           <p className="text-sm text-muted-foreground">
-            إدارة ملفك الشخصي وتفضيلات التطبيق
+            {t.settings.description}
           </p>
         </div>
       </div>
@@ -107,10 +109,7 @@ export default function SettingsPage() {
         </TabsContent>
 
         <TabsContent value="api" className="space-y-6 mt-4">
-          <ApiStatus
-            deepseekKey={process.env.NEXT_PUBLIC_DEEPSEEK_API_KEY ?? ""}
-            openrouterKey={process.env.NEXT_PUBLIC_OPENROUTER_API_KEY ?? ""}
-          />
+          <ApiStatus />
         </TabsContent>
 
         <TabsContent value="preferences" className="space-y-6 mt-4">
@@ -144,9 +143,22 @@ export default function SettingsPage() {
                     {t.settings.themeDesc}
                   </p>
                 </div>
-                <span className="text-xs text-muted-foreground bg-muted px-2 py-1 rounded">
-                  {t.settings.comingSoon}
-                </span>
+                <button
+                  onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                  className="flex items-center gap-2 rounded-lg border px-3 py-1.5 text-sm transition-all hover:bg-muted"
+                >
+                  {theme === "dark" ? (
+                    <>
+                      <Sun className="h-4 w-4" />
+                      <span>{t.settings.light}</span>
+                    </>
+                  ) : (
+                    <>
+                      <Moon className="h-4 w-4" />
+                      <span>{t.settings.dark}</span>
+                    </>
+                  )}
+                </button>
               </div>
             </CardContent>
           </Card>

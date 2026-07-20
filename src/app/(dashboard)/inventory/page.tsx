@@ -62,9 +62,9 @@ export default function InventoryPage() {
 
   const [demoVariants, setDemoVariants] = useState<InventoryVariant[]>(MOCK_VARIANTS);
 
-  const products = isDemo ? MOCK_PRODUCTS : dbProducts;
+  const products = isDemo || !dbProducts?.length ? MOCK_PRODUCTS : dbProducts;
 
-  const variants: InventoryVariant[] = isDemo
+  const variants: InventoryVariant[] = isDemo || !dbVariants?.length
     ? demoVariants
     : dbVariants.map((v) => {
         const mapped = mapDbVariantToVariant(v);

@@ -179,7 +179,11 @@ export default function PromptsPage() {
   const [detailOpen, setDetailOpen] = useState(false);
   const [viewingPrompt, setViewingPrompt] = useState<Prompt | null>(null);
 
-  const allPrompts = isDemo ? demoPrompts : dbPrompts;
+  const allPrompts = isDemo
+    ? demoPrompts
+    : dbPrompts && dbPrompts.length > 0
+      ? dbPrompts
+      : demoPrompts;
 
   const filteredPrompts = useMemo(() => {
     const result = allPrompts.filter((p) => {

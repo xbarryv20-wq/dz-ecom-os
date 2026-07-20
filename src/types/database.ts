@@ -193,3 +193,73 @@ export interface Tag {
   name: string;
   color: string | null;
 }
+
+export interface ContentPiece {
+  id: string;
+  created_at: string;
+  updated_at: string;
+  user_id: string;
+  title: string;
+  content_type: string;
+  content: string;
+  source_product_id: string | null;
+  source_campaign_id: string | null;
+  overall_score: number | null;
+  scores: Record<string, number>;
+  feedback: Record<string, string>;
+  optimized_version: string | null;
+  status: string;
+}
+
+export interface CroAudit {
+  id: string;
+  created_at: string;
+  updated_at: string;
+  user_id: string;
+  product_id: string | null;
+  url: string | null;
+  headline_score: number | null;
+  clarity_score: number | null;
+  urgency_score: number | null;
+  trust_score: number | null;
+  cta_score: number | null;
+  mobile_score: number | null;
+  speed_score: number | null;
+  design_score: number | null;
+  overall_score: number | null;
+  letter_grade: string | null;
+  recommendations: string[];
+  benchmark_percentile: number | null;
+}
+
+export interface Experiment {
+  id: string;
+  created_at: string;
+  updated_at: string;
+  user_id: string;
+  name: string;
+  hypothesis: string;
+  variable: string;
+  metric: string;
+  platform: string | null;
+  campaign_id: string | null;
+  status: string;
+  winner_id: string | null;
+  confidence: number | null;
+  lift: number | null;
+  started_at: string | null;
+  concluded_at: string | null;
+}
+
+export interface ExperimentVariant {
+  id: string;
+  created_at: string;
+  experiment_id: string;
+  name: string;
+  description: string;
+  impressions: number;
+  conversions: number;
+  spend: number;
+  is_control: boolean;
+  is_winner: boolean;
+}

@@ -7,6 +7,7 @@ import {
   ExternalLink,
   Sparkles,
   Eye,
+  Search,
 } from "lucide-react";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -43,6 +44,7 @@ interface ProductCardProps {
   onDelete: (id: string) => void;
   onEvaluate: (product: Product) => void;
   onView: (product: Product) => void;
+  onCroAudit?: (product: Product) => void;
 }
 
 export function ProductCard({
@@ -51,6 +53,7 @@ export function ProductCard({
   onDelete,
   onEvaluate,
   onView,
+  onCroAudit,
 }: ProductCardProps) {
   const { t } = useI18n();
   const nicheLabel = t.products.niches[product.niche] ?? product.niche;
@@ -127,6 +130,17 @@ export function ProductCard({
           <Sparkles className="h-3.5 w-3.5" />
           {t.products.evaluate}
         </Button>
+        {onCroAudit && (
+          <Button
+            size="sm"
+            variant="outline"
+            className="gap-1"
+            onClick={() => onCroAudit(product)}
+          >
+            <Search className="h-3.5 w-3.5" />
+            CRO
+          </Button>
+        )}
         <Button
           size="sm"
           variant="outline"

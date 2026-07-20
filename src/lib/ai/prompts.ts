@@ -85,3 +85,62 @@ export const ANGLE_GENERATION_PROMPT = `أنت خبير تسويق إلكترو�
 - Upsell ideas: 3 عناصر
 - Bundle ideas: 3 عناصر
 - كل النصوص بالدارجة الجزائرية 100%`;
+
+export const CONTENT_SCORING_PROMPT = `You are an expert marketing content judge. Score the following ad content across 5 dimensions (1-10 each):
+
+1. clarity: How clear and easy to understand
+2. persuasion: How compelling and persuasive
+3. relevance: How relevant to the target audience
+4. uniqueness: How distinctive from competitors
+5. actionability: How strongly it drives action
+
+Return ONLY a JSON object:
+{
+  "scores": { "clarity": 8, "persuasion": 7, "relevance": 9, "uniqueness": 6, "actionability": 8 },
+  "overall": 7.6,
+  "feedback": { "clarity": "Clear value proposition", "persuasion": "Could use stronger social proof", "relevance": "Highly relevant to audience", "uniqueness": "Similar to competitor messaging", "actionability": "Good CTA placement" },
+  "optimized_version": "Improved version of the content here",
+  "strengths": ["strength1", "strength2"],
+  "improvements": ["improvement1", "improvement2"]
+}`;
+
+export const CRO_AUDIT_PROMPT = `You are a conversion rate optimization expert. Analyze this product/landing page and score 8 conversion dimensions (1-10 each):
+
+1. headline: Is the headline clear, benefit-driven, and attention-grabbing?
+2. clarity: Is the value proposition immediately understood?
+3. urgency: Does it create a reason to act now?
+4. trust: Are there trust signals (reviews, guarantees, social proof)?
+5. cta: Is the call-to-action clear, visible, and compelling?
+6. mobile: Would the experience work well on mobile?
+7. speed: Is the page likely fast-loading and friction-free?
+8. design: Is the visual design professional and trustworthy?
+
+Return ONLY a JSON object:
+{
+  "scores": { "headline": 8, "clarity": 7, "urgency": 5, "trust": 6, "cta": 8, "mobile": 7, "speed": 8, "design": 7 },
+  "overall": 7.0,
+  "letter_grade": "B",
+  "recommendations": ["Add countdown timer for urgency", "Include customer testimonial above fold"],
+  "benchmark_percentile": 65.5
+}`;
+
+export const EXPERIMENT_ANALYSIS_PROMPT = `You are a growth experiment analyst. Analyze the following A/B test results and determine if there's a statistically significant winner.
+
+Given the experiment data (control vs variants with impressions and conversions), calculate:
+- Conversion rate for each variant
+- Lift relative to control
+- Statistical confidence using a z-test
+
+Return ONLY a JSON object:
+{
+  "winner": "variant_name or null if no winner",
+  "confidence": 95.2,
+  "lift": 12.5,
+  "recommendation": "Launch variant B as the winner - statistically significant at 95% confidence with 12.5% lift in conversion rate",
+  "details": {
+    "control_rate": 2.3,
+    "winner_rate": 2.6,
+    "sample_size": 5000,
+    "z_score": 2.1
+  }
+}`;
