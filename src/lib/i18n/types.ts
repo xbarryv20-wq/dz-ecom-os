@@ -51,6 +51,16 @@ export interface Translations {
     loggingIn: string;
     loginError: string;
     loginSubtitle: string;
+    signup: string;
+    signupButton: string;
+    signingUp: string;
+    signupSuccess: string;
+    signupError: string;
+    noAccount: string;
+    hasAccount: string;
+    confirmPassword: string;
+    passwordMismatch: string;
+    agreeTerms: string;
   };
   dashboard: {
     title: string;
