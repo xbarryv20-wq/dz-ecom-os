@@ -56,7 +56,7 @@ export function KnowledgeSearch({
           <SelectItem value="all">{t.common.all} {t.prompts.category}</SelectItem>
           {KNOWLEDGE_CATEGORIES.map((cat) => (
             <SelectItem key={cat.key} value={cat.key}>
-              {cat.label}
+              {t.knowledge.categories[cat.key]}
             </SelectItem>
           ))}
         </SelectContent>
@@ -70,7 +70,7 @@ export function KnowledgeSearch({
           <SelectItem value="all">{t.common.all} {t.signals.niche}</SelectItem>
           {NICHE_OPTIONS.map((niche) => (
             <SelectItem key={niche.key} value={niche.key}>
-              {niche.label}
+              {t.niches[niche.key]}
             </SelectItem>
           ))}
         </SelectContent>

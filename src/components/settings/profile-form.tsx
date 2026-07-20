@@ -121,7 +121,7 @@ export function ProfileForm({ data, onSave }: ProfileFormProps) {
               <SelectContent>
                 {NICHE_OPTIONS.map((niche) => (
                   <SelectItem key={niche.key} value={niche.key}>
-                    {niche.label}
+                    {t.niches[niche.key]}
                   </SelectItem>
                 ))}
               </SelectContent>

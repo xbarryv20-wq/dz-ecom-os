@@ -69,8 +69,7 @@ export function CampaignCard({
 }: CampaignCardProps) {
   const { t } = useI18n();
   const platformLabel =
-    CAMPAIGN_PLATFORMS.find((p) => p.key === campaign.platform)?.label ??
-    campaign.platform;
+    t.campaigns.platforms[campaign.platform] ?? campaign.platform;
   const statusConfig =
     STATUS_CONFIG[campaign.status] ?? STATUS_CONFIG.draft;
   const StatusIcon = statusConfig.icon;
@@ -84,7 +83,7 @@ export function CampaignCard({
   const derived = calculateMetrics(metrics);
 
   return (
-    <Card className="transition-shadow hover:shadow-md">
+    <Card className="card-hover animate-stagger">
       <CardHeader className="pb-3">
         <div className="flex items-start justify-between gap-2">
           <div className="flex flex-wrap items-center gap-2">

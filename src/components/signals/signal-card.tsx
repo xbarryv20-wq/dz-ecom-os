@@ -20,7 +20,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { formatDate, truncate } from "@/lib/utils";
-import { SIGNAL_SOURCES, SIGNAL_TYPES, NICHE_OPTIONS } from "@/lib/constants";
+
 import { useI18n } from "@/lib/i18n/context";
 import type { Signal } from "@/types/database";
 
@@ -64,12 +64,11 @@ export function SignalCard({
   const [expanded, setExpanded] = useState(false);
 
   const sourceLabel =
-    SIGNAL_SOURCES.find((s) => s.key === signal.source)?.label ?? signal.source;
+    t.signals.signalSources[signal.source] ?? signal.source;
   const typeLabel =
-    SIGNAL_TYPES.find((t) => t.key === signal.signal_type)?.label ??
-    signal.signal_type;
+    t.signals.signalTypes[signal.signal_type] ?? signal.signal_type;
   const nicheLabel =
-    NICHE_OPTIONS.find((n) => n.key === signal.niche)?.label ?? signal.niche;
+    t.niches[signal.niche] ?? signal.niche;
   const sourceColor = SOURCE_COLORS[signal.source] ?? "bg-gray-400 text-white";
   const typeColor =
     TYPE_COLORS[signal.signal_type as keyof typeof TYPE_COLORS] ?? "secondary";
@@ -82,7 +81,7 @@ export function SignalCard({
 
   return (
     <Card
-      className="cursor-pointer transition-shadow hover:shadow-md"
+      className="card-hover cursor-pointer animate-stagger"
       onClick={() => onClick?.(signal)}
     >
       <CardHeader className="pb-3">

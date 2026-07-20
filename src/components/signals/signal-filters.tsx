@@ -49,7 +49,7 @@ export function SignalFilters({
           <SelectItem value="all">{t.common.all} {t.signals.source}</SelectItem>
           {SIGNAL_SOURCES.map((s) => (
             <SelectItem key={s.key} value={s.key}>
-              {s.label}
+              {t.signals.signalSources[s.key]}
             </SelectItem>
           ))}
         </SelectContent>
@@ -61,9 +61,9 @@ export function SignalFilters({
         </SelectTrigger>
         <SelectContent>
           <SelectItem value="all">{t.common.all} {t.signals.signalType}</SelectItem>
-          {SIGNAL_TYPES.map((t) => (
-            <SelectItem key={t.key} value={t.key}>
-              {t.label}
+          {SIGNAL_TYPES.map((st) => (
+            <SelectItem key={st.key} value={st.key}>
+              {t.signals.signalTypes[st.key]}
             </SelectItem>
           ))}
         </SelectContent>
@@ -77,7 +77,7 @@ export function SignalFilters({
           <SelectItem value="all">{t.common.all} {t.signals.niche}</SelectItem>
           {NICHE_OPTIONS.map((n) => (
             <SelectItem key={n.key} value={n.key}>
-              {n.label}
+              {t.niches[n.key]}
             </SelectItem>
           ))}
         </SelectContent>

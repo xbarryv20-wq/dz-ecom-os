@@ -96,9 +96,9 @@ export function StockMovementDialog({
                 <SelectValue placeholder={t.inventory.movementType} />
               </SelectTrigger>
               <SelectContent>
-                {INVENTORY_MOVEMENT_TYPES.map((t) => (
-                  <SelectItem key={t.key} value={t.key}>
-                    {t.label}
+                {INVENTORY_MOVEMENT_TYPES.map((mt) => (
+                  <SelectItem key={mt.key} value={mt.key}>
+                    {t.inventory.movements[mt.key]}
                   </SelectItem>
                 ))}
               </SelectContent>

@@ -24,23 +24,23 @@ import { useI18n } from "@/lib/i18n/context";
 import type { Product } from "./product-card";
 
 const NICHE_OPTIONS = [
-  { value: "electronics", label: "إلكترونيات" },
-  { value: "fashion", label: "أزياء" },
-  { value: "beauty", label: "جمال وعناية" },
-  { value: "home", label: "المنزل" },
-  { value: "health", label: "صحة" },
-  { value: "sports", label: "رياضة" },
-  { value: "toys", label: "ألعاب" },
-  { value: "automotive", label: "سيارات" },
-  { value: "pets", label: "حيوانات أليفة" },
-  { value: "food", label: "أغذية" },
-  { value: "other", label: "أخرى" },
+  { value: "electronics" },
+  { value: "fashion" },
+  { value: "beauty" },
+  { value: "home" },
+  { value: "health" },
+  { value: "sports" },
+  { value: "toys" },
+  { value: "automotive" },
+  { value: "pets" },
+  { value: "food" },
+  { value: "other" },
 ];
 
 const STATUS_OPTIONS = [
-  { value: "draft", label: "مسودة" },
-  { value: "ready", label: "جاهز" },
-  { value: "active", label: "نشط" },
+  { value: "draft" },
+  { value: "ready" },
+  { value: "active" },
 ];
 
 interface ProductFormData {
@@ -173,7 +173,7 @@ export function ProductForm({
               <SelectContent>
                 {NICHE_OPTIONS.map((opt) => (
                   <SelectItem key={opt.value} value={opt.value}>
-                    {opt.label}
+                    {t.products.niches[opt.value]}
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -197,7 +197,7 @@ export function ProductForm({
               <SelectContent>
                 {STATUS_OPTIONS.map((opt) => (
                   <SelectItem key={opt.value} value={opt.value}>
-                    {opt.label}
+                    {t.products.statuses[opt.value]}
                   </SelectItem>
                 ))}
               </SelectContent>

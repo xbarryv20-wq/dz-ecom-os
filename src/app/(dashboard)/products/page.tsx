@@ -123,25 +123,25 @@ const MOCK_PRODUCTS: Product[] = [
 ];
 
 const NICHE_OPTIONS = [
-  { value: "all", label: "products.allNiches" },
-  { value: "electronics", label: "niches.electronics" },
-  { value: "fashion", label: "niches.fashion" },
-  { value: "beauty", label: "niches.beauty" },
-  { value: "home", label: "niches.home" },
-  { value: "health", label: "niches.health" },
-  { value: "sports", label: "niches.sports" },
-  { value: "toys", label: "niches.toys" },
-  { value: "automotive", label: "niches.automotive" },
-  { value: "pets", label: "niches.pets" },
-  { value: "food", label: "niches.food" },
-  { value: "other", label: "niches.other" },
+  { value: "all", label: "all" },
+  { value: "electronics", label: "electronics" },
+  { value: "fashion", label: "fashion" },
+  { value: "beauty", label: "beauty" },
+  { value: "home", label: "home" },
+  { value: "health", label: "health" },
+  { value: "sports", label: "sports" },
+  { value: "toys", label: "toys" },
+  { value: "automotive", label: "automotive" },
+  { value: "pets", label: "pets" },
+  { value: "food", label: "food" },
+  { value: "other", label: "other" },
 ];
 
 const STATUS_OPTIONS = [
-  { value: "all", label: "products.allStatuses" },
-  { value: "draft", label: "products.statuses.draft" },
-  { value: "ready", label: "products.statuses.ready" },
-  { value: "active", label: "products.statuses.active" },
+  { value: "all", label: "all" },
+  { value: "draft", label: "draft" },
+  { value: "ready", label: "ready" },
+  { value: "active", label: "active" },
 ];
 
 function LoadingSkeleton() {
@@ -393,9 +393,10 @@ export default function ProductsPage() {
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
-              {NICHE_OPTIONS.map((opt) => (
+              <SelectItem value="all">{t.common.all} {t.products.niche}</SelectItem>
+              {NICHE_OPTIONS.filter((o) => o.value !== "all").map((opt) => (
                 <SelectItem key={opt.value} value={opt.value}>
-                  {(t as any)[opt.label] || opt.label}
+                  {t.niches[opt.value]}
                 </SelectItem>
               ))}
           </SelectContent>
@@ -405,9 +406,10 @@ export default function ProductsPage() {
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
-              {STATUS_OPTIONS.map((opt) => (
+              <SelectItem value="all">{t.common.all} {t.products.status}</SelectItem>
+              {STATUS_OPTIONS.filter((o) => o.value !== "all").map((opt) => (
                 <SelectItem key={opt.value} value={opt.value}>
-                  {(t as any)[opt.label] || opt.label}
+                  {t.products.statuses[opt.value]}
                 </SelectItem>
               ))}
           </SelectContent>

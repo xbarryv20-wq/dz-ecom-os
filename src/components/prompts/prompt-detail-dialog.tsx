@@ -48,8 +48,7 @@ export function PromptDetailDialog({
   const currentPrompt = prompt;
 
   const categoryLabel =
-    PROMPT_CATEGORIES.find((c) => c.key === currentPrompt.category)?.label ??
-    currentPrompt.category;
+    t.prompts.categories[currentPrompt.category] ?? currentPrompt.category;
   const categoryColor =
     CATEGORY_COLORS[currentPrompt.category] ?? CATEGORY_COLORS.other;
 

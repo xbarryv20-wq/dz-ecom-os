@@ -37,7 +37,7 @@ export function PromptCategoryFilter({
               : "bg-muted text-muted-foreground hover:bg-muted/80"
           }`}
         >
-          {cat.label}
+          {t.prompts.categories[cat.key]}
         </button>
       ))}
     </div>

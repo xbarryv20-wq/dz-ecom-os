@@ -31,25 +31,11 @@ export interface Product {
   createdAt: string;
 }
 
-const NICHE_OPTIONS = [
-  { value: "electronics", label: "إلكترونيات" },
-  { value: "fashion", label: "أزياء" },
-  { value: "beauty", label: "جمال وعناية" },
-  { value: "home", label: "المنزل" },
-  { value: "health", label: "صحة" },
-  { value: "sports", label: "رياضة" },
-  { value: "toys", label: "ألعاب" },
-  { value: "automotive", label: "سيارات" },
-  { value: "pets", label: "حيوانات أليفة" },
-  { value: "food", label: "أغذية" },
-  { value: "other", label: "أخرى" },
-];
-
-const STATUS_OPTIONS = [
-  { value: "draft", label: "مسودة", color: "bg-gray-100 text-gray-700" },
-  { value: "ready", label: "جاهز", color: "bg-blue-100 text-blue-700" },
-  { value: "active", label: "نشط", color: "bg-green-100 text-green-700" },
-];
+const STATUS_COLORS: Record<string, string> = {
+  draft: "bg-gray-100 text-gray-700",
+  ready: "bg-blue-100 text-blue-700",
+  active: "bg-green-100 text-green-700",
+};
 
 interface ProductCardProps {
   product: Product;
@@ -67,13 +53,11 @@ export function ProductCard({
   onView,
 }: ProductCardProps) {
   const { t } = useI18n();
-  const nicheLabel =
-    NICHE_OPTIONS.find((n) => n.value === product.niche)?.label || product.niche;
-  const statusOption =
-    STATUS_OPTIONS.find((s) => s.value === product.status) || STATUS_OPTIONS[0];
+  const nicheLabel = t.products.niches[product.niche] ?? product.niche;
+  const statusColor = STATUS_COLORS[product.status] ?? STATUS_COLORS.draft;
 
   return (
-    <Card className="hover:shadow-md transition-shadow">
+    <Card className="card-hover animate-stagger">
       <CardHeader className="pb-3">
         <div className="flex items-start justify-between">
           <div className="flex items-center gap-2">
@@ -91,7 +75,7 @@ export function ProductCard({
       <CardContent className="space-y-3">
         <div className="flex gap-2 flex-wrap">
           <Badge variant="secondary">{nicheLabel}</Badge>
-          <Badge className={statusOption.color}>{statusOption.label}</Badge>
+          <Badge className={statusColor}>{t.products.statuses[product.status]}</Badge>
         </div>
 
         <div className="grid grid-cols-2 gap-2 text-sm">

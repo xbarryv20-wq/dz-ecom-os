@@ -148,7 +148,7 @@ export function KnowledgeForm({
                 <SelectContent>
                   {KNOWLEDGE_CATEGORIES.map((cat) => (
                     <SelectItem key={cat.key} value={cat.key}>
-                      {cat.label}
+                      {t.knowledge.categories[cat.key]}
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -174,7 +174,7 @@ export function KnowledgeForm({
                 <SelectContent>
                   {NICHE_OPTIONS.map((niche) => (
                     <SelectItem key={niche.key} value={niche.key}>
-                      {niche.label}
+                      {t.niches[niche.key]}
                     </SelectItem>
                   ))}
                 </SelectContent>

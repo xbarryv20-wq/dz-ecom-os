@@ -57,8 +57,7 @@ export function PromptCard({
   const [copied, setCopied] = useState(false);
 
   const categoryLabel =
-    PROMPT_CATEGORIES.find((c) => c.key === prompt.category)?.label ??
-    prompt.category;
+    t.prompts.categories[prompt.category] ?? prompt.category;
   const categoryColor =
     CATEGORY_COLORS[prompt.category] ?? CATEGORY_COLORS.other;
 
@@ -77,7 +76,7 @@ export function PromptCard({
 
   return (
     <Card
-      className="group cursor-pointer transition-shadow hover:shadow-md"
+      className="card-hover group cursor-pointer animate-stagger"
       onClick={() => onClick?.(prompt)}
     >
       <CardHeader className="pb-2">

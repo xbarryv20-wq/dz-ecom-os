@@ -63,8 +63,7 @@ export function CampaignDetailDialog({
   if (!campaign) return null;
 
   const platformLabel =
-    CAMPAIGN_PLATFORMS.find((p) => p.key === campaign.platform)?.label ??
-    campaign.platform;
+    t.campaigns.platforms[campaign.platform] ?? campaign.platform;
   const statusConfig =
     STATUS_CONFIG[campaign.status] ?? STATUS_CONFIG.draft;
 

@@ -24,26 +24,6 @@ import { PriceCalculator } from "./price-calculator";
 import { useI18n } from "@/lib/i18n/context";
 import type { Product } from "./product-card";
 
-const NICHE_OPTIONS = [
-  { value: "electronics", label: "إلكترونيات" },
-  { value: "fashion", label: "أزياء" },
-  { value: "beauty", label: "جمال وعناية" },
-  { value: "home", label: "المنزل" },
-  { value: "health", label: "صحة" },
-  { value: "sports", label: "رياضة" },
-  { value: "toys", label: "ألعاب" },
-  { value: "automotive", label: "سيارات" },
-  { value: "pets", label: "حيوانات أليفة" },
-  { value: "food", label: "أغذية" },
-  { value: "other", label: "أخرى" },
-];
-
-const STATUS_OPTIONS = [
-  { value: "draft", label: "مسودة", color: "bg-gray-100 text-gray-700" },
-  { value: "ready", label: "جاهز", color: "bg-blue-100 text-blue-700" },
-  { value: "active", label: "نشط", color: "bg-green-100 text-green-700" },
-];
-
 interface ProductDetailProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
@@ -51,6 +31,12 @@ interface ProductDetailProps {
   onEdit: (product: Product) => void;
   onEvaluate: (product: Product) => void;
 }
+
+const STATUS_COLORS: Record<string, string> = {
+  draft: "bg-gray-100 text-gray-700",
+  ready: "bg-blue-100 text-blue-700",
+  active: "bg-green-100 text-green-700",
+};
 
 export function ProductDetail({
   open,
@@ -60,10 +46,8 @@ export function ProductDetail({
   onEvaluate,
 }: ProductDetailProps) {
   const { t } = useI18n();
-  const nicheLabel =
-    NICHE_OPTIONS.find((n) => n.value === product.niche)?.label || product.niche;
-  const statusOption =
-    STATUS_OPTIONS.find((s) => s.value === product.status) || STATUS_OPTIONS[0];
+  const nicheLabel = t.products.niches[product.niche] ?? product.niche;
+  const statusColor = STATUS_COLORS[product.status] ?? STATUS_COLORS.draft;
 
   const totalCost =
     product.costPrice +
@@ -105,7 +89,7 @@ export function ProductDetail({
               </div>
               <div className="flex gap-2">
                 <Badge variant="secondary">{nicheLabel}</Badge>
-                <Badge className={statusOption.color}>{statusOption.label}</Badge>
+                <Badge className={statusColor}>{t.products.statuses[product.status]}</Badge>
                 {product.aiReviewed && (
                   <Badge className="bg-purple-100 text-purple-700 gap-1">
                     <Sparkles className="h-3 w-3" />

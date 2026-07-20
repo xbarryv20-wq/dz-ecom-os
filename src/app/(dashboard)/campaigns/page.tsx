@@ -139,18 +139,10 @@ const MOCK_CAMPAIGNS: Campaign[] = [
 ];
 
 const SORT_OPTIONS = [
-  { value: "date", label: "campaigns.sortOptions.date" },
-  { value: "spend", label: "campaigns.sortOptions.spend" },
-  { value: "orders", label: "campaigns.sortOptions.orders" },
+  { value: "date", label: "Date" },
+  { value: "spend", label: "Spend" },
+  { value: "orders", label: "Orders" },
 ];
-
-function getFilteredStatusOptions() {
-  return [{ key: "all", label: "campaigns.allStatuses" }, ...CAMPAIGN_STATUSES];
-}
-
-function getFilteredPlatformOptions() {
-  return [{ key: "all", label: "campaigns.allPlatforms" }, ...CAMPAIGN_PLATFORMS];
-}
 
 export default function CampaignsPage() {
   const { t } = useI18n();
@@ -376,9 +368,10 @@ export default function CampaignsPage() {
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              {getFilteredStatusOptions().map((s) => (
-                <SelectItem key={s.key} value={s.key}>
-                  {(t as any)[s.label] || s.label}
+              <SelectItem value="all">{t.campaigns.allStatuses}</SelectItem>
+              {CAMPAIGN_STATUSES.map((cs) => (
+                <SelectItem key={cs.key} value={cs.key}>
+                  {t.campaigns.statuses[cs.key]}
                 </SelectItem>
               ))}
             </SelectContent>
@@ -388,9 +381,10 @@ export default function CampaignsPage() {
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              {getFilteredPlatformOptions().map((p) => (
-                <SelectItem key={p.key} value={p.key}>
-                  {(t as any)[p.label] || p.label}
+              <SelectItem value="all">{t.campaigns.allPlatforms}</SelectItem>
+              {CAMPAIGN_PLATFORMS.map((cp) => (
+                <SelectItem key={cp.key} value={cp.key}>
+                  {t.campaigns.platforms[cp.key]}
                 </SelectItem>
               ))}
             </SelectContent>
@@ -400,11 +394,9 @@ export default function CampaignsPage() {
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              {SORT_OPTIONS.map((opt) => (
-                <SelectItem key={opt.value} value={opt.value}>
-                  {t.campaigns.sortBy}: {(t as any)[opt.label] || opt.label}
-                </SelectItem>
-              ))}
+              <SelectItem value="date">{t.campaigns.sortBy}: {t.campaigns.sortOptions.date}</SelectItem>
+              <SelectItem value="spend">{t.campaigns.sortBy}: {t.campaigns.sortOptions.spend}</SelectItem>
+              <SelectItem value="orders">{t.campaigns.sortBy}: {t.campaigns.sortOptions.orders}</SelectItem>
             </SelectContent>
           </Select>
         </div>

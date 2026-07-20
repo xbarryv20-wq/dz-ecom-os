@@ -115,7 +115,7 @@ export function PromptForm({
               <SelectContent>
                 {PROMPT_CATEGORIES.map((cat) => (
                   <SelectItem key={cat.key} value={cat.key}>
-                    {cat.label}
+                    {t.prompts.categories[cat.key]}
                   </SelectItem>
                 ))}
               </SelectContent>

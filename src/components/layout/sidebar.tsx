@@ -74,7 +74,7 @@ export function Sidebar() {
   return (
     <aside
       className={cn(
-        "fixed top-0 z-40 hidden h-screen border-border bg-sidebar-background transition-all duration-300 lg:flex lg:flex-col",
+        "fixed top-0 z-40 hidden h-screen border-border bg-sidebar-background transition-[width,transform,opacity] duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] lg:flex lg:flex-col",
         isRtl ? "right-0 border-l" : "left-0 border-r",
         expanded ? "w-60" : "w-16"
       )}

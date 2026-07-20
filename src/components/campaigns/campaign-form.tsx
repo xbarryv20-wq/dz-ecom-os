@@ -133,7 +133,7 @@ export function CampaignForm({
                 <SelectContent>
                   {CAMPAIGN_PLATFORMS.map((p) => (
                     <SelectItem key={p.key} value={p.key}>
-                      {p.label}
+                      {t.campaigns.platforms[p.key]}
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -195,9 +195,9 @@ export function CampaignForm({
                   <SelectValue placeholder={t.common.status} />
                 </SelectTrigger>
                 <SelectContent>
-                  {CAMPAIGN_STATUSES.map((s) => (
-                    <SelectItem key={s.key} value={s.key}>
-                      {s.label}
+                  {CAMPAIGN_STATUSES.map((cs) => (
+                    <SelectItem key={cs.key} value={cs.key}>
+                      {t.campaigns.statuses[cs.key]}
                     </SelectItem>
                   ))}
                 </SelectContent>

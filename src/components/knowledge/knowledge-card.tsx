@@ -38,10 +38,9 @@ export function KnowledgeCard({
   const [expanded, setExpanded] = useState(false);
 
   const categoryLabel =
-    KNOWLEDGE_CATEGORIES.find((c) => c.key === entry.category)?.label ??
-    entry.category;
+    t.knowledge.categories[entry.category] ?? entry.category;
   const nicheLabel =
-    NICHE_OPTIONS.find((n) => n.key === entry.niche)?.label ?? entry.niche;
+    t.niches[entry.niche] ?? entry.niche;
 
   const shouldTruncate = entry.content.length > PREVIEW_LENGTH;
   const displayContent =
